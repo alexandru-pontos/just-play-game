@@ -16,7 +16,20 @@ Site-ul a fost realizat cu [Next.js](https://nextjs.org), si foloseste [PostgreS
 
 ## Getting Started
 
-Rulati comanda de lansare proiect:
+1. Pregatiti mediul
+
+```bash
+npm install
+```
+
+2. Pregatiti Prisma
+
+```bash
+npx prisma generate
+npx prisma migrate dev --name init
+```
+
+3. Porniti serverul
 
 ```bash
 npm run dev
