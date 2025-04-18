@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String      @id @default(cuid())
+  name     String?
+  email    String?     @unique
+  password String?
+  isAdmin  Boolean     @default(false)
+  games    UserGame[]
+  posts    ForumPost[]
+}
+
+model Console {
+  id    String @id @default(cuid())
+  name  String @unique
+  games Game[]
+}
+
+model Game {
+  id           String        @id @default(cuid())
+  slug         String        @unique
+  title        String
+  description  String
+  coverImage   String
+  console      Console?      @relation(fields: [consoleId], references: [id])
+  consoleId    String?
+  achievements Achievement[]
+  users        UserGame[]
+}
+
+model Achievement {
+  id              String            @id @default(cuid())
+  title           String
+  description     String
+  game            Game              @relation(fields: [gameId], references: [id])
+  gameId          String
+  UserAchievement UserAchievement[]
+}
+
+model UserAchievement {
+  id            String      @id @default(cuid())
+  userGame      UserGame    @relation(fields: [userGameId], references: [id])
+  userGameId    String
+  achievement   Achievement @relation(fields: [achievementId], references: [id])
+  achievementId String
+  earnedAt      DateTime    @default(now())
+}
+
+model UserGame {
+  id           String            @id @default(cuid())
+  user         User              @relation(fields: [userId], references: [id])
+  userId       String
+  game         Game              @relation(fields: [gameId], references: [id])
+  gameId       String
+  owned        Boolean           @default(false)
+  achievements UserAchievement[]
+}
+
+model ForumPost {
+  id        String   @id @default(cuid())
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  String
+  title     String
+  content   String
+  pinned    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
