@@ -1,10 +1,9 @@
-// app/games/[console]/page.tsx
 "use client";
 
 import { useParams, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
-import { cn } from "@/lib/utils"; // optional utility for merging classes
+import { cn } from "@/lib/utils";
 
 const dummyGames = Array.from({ length: 10 }).map((_, i) => ({
   id: i,
@@ -20,7 +19,7 @@ export default function ConsoleGameLibraryPage() {
   const { console } = useParams();
   const [view, setView] = useState<"tile" | "list">("tile");
   const [sort, setSort] = useState("alphabetical");
-  const isAdmin = false; // Replace with session check
+  const isAdmin = false; // replace with session check!!
 
   return (
     <div className="py-10 space-y-6">

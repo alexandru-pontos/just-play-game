@@ -1,4 +1,3 @@
-// app/context/AuthContext.tsx
 import { createContext, ReactNode, useContext, useState, useEffect } from "react";
 import { Session } from "next-auth";
 import { useSession } from "next-auth/react";  // Client-side session management hook

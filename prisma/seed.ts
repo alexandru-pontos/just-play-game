@@ -20,7 +20,6 @@ async function main() {
     },
   });
 
-  // Add a game for each
   const mgs3 = await prisma.game.upsert({
     where: { slug: 'metal-gear-solid-3' },
     update: {},
@@ -28,7 +27,7 @@ async function main() {
       slug: 'metal-gear-solid-3',
       title: 'Metal Gear Solid 3: Snake Eater',
       description: 'Stealth action game set in the Cold War.',
-      coverImage: '/mgs3.jpg', // put this in public/
+      coverImage: '/placeholder.png',
       consoleId: ps2.id,
       achievements: {
         create: [
@@ -46,7 +45,7 @@ async function main() {
       slug: 'smash-bros-melee',
       title: 'Super Smash Bros. Melee',
       description: 'Fast-paced platform fighting game.',
-      coverImage: '/melee.jpg', // put this in public/
+      coverImage: '/placeholder.png',
       consoleId: gamecube.id,
       achievements: {
         create: [

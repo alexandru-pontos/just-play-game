@@ -1,36 +1,25 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Just Play Game - Retro game achievement & library tracking
+
+Site-ul are rolul de a oferi utilizatorilor o modalitate de a cataloga jocurile retro pe care le detin, si de a completa o lista de achievement-uri pentru aceste jocuri.
+
+Se mai pune la dispozitia utilizatorilor si un forum de discutie, cu mai multe sectiuni dedicate diferitelor aspecte ale acestui hobby.
+
+Site-ul a fost realizat cu [Next.js](https://nextjs.org), si foloseste [PostgreSQL](https://www.postgresql.org/) pentru a gestiona datele legate de utilizatori si de biblioteca de jocuri si de achievement-uri. Legatura cu baza de date se face prin [Prisma](https://www.prisma.io/), cu inca alte cateva module precum [Auth.js](https://authjs.dev/getting-started) si [Recharts](https://recharts.org/en-US/).
+
+## TODO
+
+- Deocamdata, tot ce este inclus in proiect sunt pagini umplute cu date placeholder.
+- Switch-ul intre light mode si dark mode nu functioneaza
+- Butoanele de `Log In` si `Sign Up` nu indeplinesc inca functiile dorite. Paginile aferente fiecarui buton pot fi accesate [aici](http://localhost:3000/login) pentru `Log In` si [aici](http://localhost:3000/register) pentru `Sign up`.
+- Pentru a vedea o pagina dummy a unui profil de utilizator, se poate accesa [localhost/profile/PlayerOne](http://localhost:3000/profile/PlayerOne). Pentru a vedea cum ar arata pagina de editare profil, adaugati [/edit](http://localhost:3000/profile/PlayerOne/edit) la URL.
+- Pentru a functiona Prisma, `DATABASE_URL` din fisierul `.env` trebuie modificat pentru a face legatura cu serverul local.
 
 ## Getting Started
 
-First, run the development server:
+Rulati comanda de lansare proiect:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Apoi accesati [http://localhost:3000](http://localhost:3000).

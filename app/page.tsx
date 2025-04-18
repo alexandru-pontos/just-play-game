@@ -1,4 +1,3 @@
-// app/page.tsx
 "use client";
 
 import Link from "next/link";
@@ -6,9 +5,9 @@ import Link from "next/link";
 export default function HomePage() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-      {/* Left Section (75%) */}
+      {/* Left Section */}
       <section className="lg:col-span-3 space-y-6">
-        {/* News Section */}
+        {/* News */}
         <div className="bg-zinc-800 p-4 rounded-xl shadow">
           <h2 className="text-lg font-bold mb-2">News</h2>
           <ul className="space-y-2">
@@ -49,7 +48,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Right Section (25%) */}
+      {/* Right Section */}
       <aside className="space-y-6">
         {/* Statistics Section */}
         <div className="bg-zinc-800 p-4 rounded-xl shadow">
