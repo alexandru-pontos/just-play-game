@@ -10,15 +10,17 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    const res = await signIn("credentials", {
+    setError("");
+
+    const result = await signIn("credentials", {
+      redirect: false,
       email,
       password,
-      redirect: false,
     });
 
-    if (res?.error) {
+    if (result?.error) {
       setError("Invalid email or password");
     } else {
       router.push("/");
@@ -26,13 +28,9 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-zinc-900 p-6 rounded-xl shadow-md w-full max-w-md space-y-4"
-      >
-        <h1 className="text-2xl font-bold text-white">Log In</h1>
-        {error && <p className="text-red-500 text-sm">{error}</p>}
+    <div className="max-w-md mx-auto py-10">
+      <h1 className="text-2xl font-bold mb-6">Log In</h1>
+      <form onSubmit={handleLogin} className="space-y-4">
         <input
           type="email"
           placeholder="Email"
@@ -53,9 +51,7 @@ export default function LoginPage() {
         >
           Log In
         </button>
-        <p className="text-sm text-zinc-400 text-center">
-          Don't have an account? <a href="/register" className="text-purple-400 hover:underline">Sign up</a>
-        </p>
+        {error && <p className="text-red-500 text-sm pt-2">{error}</p>}
       </form>
     </div>
   );

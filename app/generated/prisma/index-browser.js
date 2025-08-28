@@ -122,7 +122,9 @@ exports.Prisma.UserScalarFieldEnum = {
   name: 'name',
   email: 'email',
   password: 'password',
-  isAdmin: 'isAdmin'
+  isAdmin: 'isAdmin',
+  bio: 'bio',
+  avatar: 'avatar'
 };
 
 exports.Prisma.ConsoleScalarFieldEnum = {
@@ -136,6 +138,7 @@ exports.Prisma.GameScalarFieldEnum = {
   title: 'title',
   description: 'description',
   coverImage: 'coverImage',
+  releaseDate: 'releaseDate',
   consoleId: 'consoleId'
 };
 

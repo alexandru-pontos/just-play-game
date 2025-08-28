@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 
@@ -10,6 +10,7 @@ export default function TopBar() {
   const { data: session } = useSession();
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const username = session?.user?.name;
 
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
@@ -33,23 +34,23 @@ export default function TopBar() {
         {/* Auth controls */}
         {!session ? (
           <>
-            <button
-              onClick={() => signIn()}
+            <Link
+              href="/login"
               className="px-4 py-1 rounded bg-purple-600 hover:bg-purple-700 text-white"
             >
               Log In
-            </button>
-            <button
-              onClick={() => signIn()}
+            </Link>
+            <Link
+              href="/register"
               className="px-4 py-1 rounded border border-purple-600 text-purple-300 hover:bg-purple-600 hover:text-white"
             >
               Sign Up
-            </button>
+            </Link>
           </>
         ) : (
-          <Link href={`/profile`}>
+          <Link href={`/profile/${username}`}>
             <img
-              src={session.user?.image || "/default-avatar.png"}
+              src={`/avatars/${session.user?.id}.png` || "/avatars/default.png"}
               alt="Profile"
               className="w-9 h-9 rounded-full border-2 border-purple-400 hover:opacity-80 cursor-pointer"
             />

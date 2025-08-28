@@ -1603,6 +1603,8 @@ export namespace Prisma {
     email: string | null
     password: string | null
     isAdmin: boolean | null
+    bio: string | null
+    avatar: string | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1611,6 +1613,8 @@ export namespace Prisma {
     email: string | null
     password: string | null
     isAdmin: boolean | null
+    bio: string | null
+    avatar: string | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1619,6 +1623,8 @@ export namespace Prisma {
     email: number
     password: number
     isAdmin: number
+    bio: number
+    avatar: number
     _all: number
   }
 
@@ -1629,6 +1635,8 @@ export namespace Prisma {
     email?: true
     password?: true
     isAdmin?: true
+    bio?: true
+    avatar?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1637,6 +1645,8 @@ export namespace Prisma {
     email?: true
     password?: true
     isAdmin?: true
+    bio?: true
+    avatar?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1645,6 +1655,8 @@ export namespace Prisma {
     email?: true
     password?: true
     isAdmin?: true
+    bio?: true
+    avatar?: true
     _all?: true
   }
 
@@ -1722,10 +1734,12 @@ export namespace Prisma {
 
   export type UserGroupByOutputType = {
     id: string
-    name: string | null
-    email: string | null
+    name: string
+    email: string
     password: string | null
     isAdmin: boolean
+    bio: string | null
+    avatar: string | null
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -1751,6 +1765,8 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     isAdmin?: boolean
+    bio?: boolean
+    avatar?: boolean
     games?: boolean | User$gamesArgs<ExtArgs>
     posts?: boolean | User$postsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1762,6 +1778,8 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     isAdmin?: boolean
+    bio?: boolean
+    avatar?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1770,6 +1788,8 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     isAdmin?: boolean
+    bio?: boolean
+    avatar?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -1778,9 +1798,11 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     isAdmin?: boolean
+    bio?: boolean
+    avatar?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "isAdmin", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "isAdmin" | "bio" | "avatar", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     games?: boolean | User$gamesArgs<ExtArgs>
     posts?: boolean | User$postsArgs<ExtArgs>
@@ -1797,10 +1819,12 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      name: string | null
-      email: string | null
+      name: string
+      email: string
       password: string | null
       isAdmin: boolean
+      bio: string | null
+      avatar: string | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -2231,6 +2255,8 @@ export namespace Prisma {
     readonly email: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly isAdmin: FieldRef<"User", 'Boolean'>
+    readonly bio: FieldRef<"User", 'String'>
+    readonly avatar: FieldRef<"User", 'String'>
   }
     
 
@@ -2449,7 +2475,7 @@ export namespace Prisma {
     /**
      * The data needed to create a User.
      */
-    data?: XOR<UserCreateInput, UserUncheckedCreateInput>
+    data: XOR<UserCreateInput, UserUncheckedCreateInput>
   }
 
   /**
@@ -3732,6 +3758,7 @@ export namespace Prisma {
     title: string | null
     description: string | null
     coverImage: string | null
+    releaseDate: Date | null
     consoleId: string | null
   }
 
@@ -3741,6 +3768,7 @@ export namespace Prisma {
     title: string | null
     description: string | null
     coverImage: string | null
+    releaseDate: Date | null
     consoleId: string | null
   }
 
@@ -3750,6 +3778,7 @@ export namespace Prisma {
     title: number
     description: number
     coverImage: number
+    releaseDate: number
     consoleId: number
     _all: number
   }
@@ -3761,6 +3790,7 @@ export namespace Prisma {
     title?: true
     description?: true
     coverImage?: true
+    releaseDate?: true
     consoleId?: true
   }
 
@@ -3770,6 +3800,7 @@ export namespace Prisma {
     title?: true
     description?: true
     coverImage?: true
+    releaseDate?: true
     consoleId?: true
   }
 
@@ -3779,6 +3810,7 @@ export namespace Prisma {
     title?: true
     description?: true
     coverImage?: true
+    releaseDate?: true
     consoleId?: true
     _all?: true
   }
@@ -3861,6 +3893,7 @@ export namespace Prisma {
     title: string
     description: string
     coverImage: string
+    releaseDate: Date | null
     consoleId: string | null
     _count: GameCountAggregateOutputType | null
     _min: GameMinAggregateOutputType | null
@@ -3887,6 +3920,7 @@ export namespace Prisma {
     title?: boolean
     description?: boolean
     coverImage?: boolean
+    releaseDate?: boolean
     consoleId?: boolean
     console?: boolean | Game$consoleArgs<ExtArgs>
     achievements?: boolean | Game$achievementsArgs<ExtArgs>
@@ -3900,6 +3934,7 @@ export namespace Prisma {
     title?: boolean
     description?: boolean
     coverImage?: boolean
+    releaseDate?: boolean
     consoleId?: boolean
     console?: boolean | Game$consoleArgs<ExtArgs>
   }, ExtArgs["result"]["game"]>
@@ -3910,6 +3945,7 @@ export namespace Prisma {
     title?: boolean
     description?: boolean
     coverImage?: boolean
+    releaseDate?: boolean
     consoleId?: boolean
     console?: boolean | Game$consoleArgs<ExtArgs>
   }, ExtArgs["result"]["game"]>
@@ -3920,10 +3956,11 @@ export namespace Prisma {
     title?: boolean
     description?: boolean
     coverImage?: boolean
+    releaseDate?: boolean
     consoleId?: boolean
   }
 
-  export type GameOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "title" | "description" | "coverImage" | "consoleId", ExtArgs["result"]["game"]>
+  export type GameOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "title" | "description" | "coverImage" | "releaseDate" | "consoleId", ExtArgs["result"]["game"]>
   export type GameInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     console?: boolean | Game$consoleArgs<ExtArgs>
     achievements?: boolean | Game$achievementsArgs<ExtArgs>
@@ -3950,6 +3987,7 @@ export namespace Prisma {
       title: string
       description: string
       coverImage: string
+      releaseDate: Date | null
       consoleId: string | null
     }, ExtArgs["result"]["game"]>
     composites: {}
@@ -4382,6 +4420,7 @@ export namespace Prisma {
     readonly title: FieldRef<"Game", 'String'>
     readonly description: FieldRef<"Game", 'String'>
     readonly coverImage: FieldRef<"Game", 'String'>
+    readonly releaseDate: FieldRef<"Game", 'DateTime'>
     readonly consoleId: FieldRef<"Game", 'String'>
   }
     
@@ -9165,7 +9204,9 @@ export namespace Prisma {
     name: 'name',
     email: 'email',
     password: 'password',
-    isAdmin: 'isAdmin'
+    isAdmin: 'isAdmin',
+    bio: 'bio',
+    avatar: 'avatar'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -9185,6 +9226,7 @@ export namespace Prisma {
     title: 'title',
     description: 'description',
     coverImage: 'coverImage',
+    releaseDate: 'releaseDate',
     consoleId: 'consoleId'
   };
 
@@ -9319,43 +9361,51 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     id?: StringFilter<"User"> | string
-    name?: StringNullableFilter<"User"> | string | null
-    email?: StringNullableFilter<"User"> | string | null
+    name?: StringFilter<"User"> | string
+    email?: StringFilter<"User"> | string
     password?: StringNullableFilter<"User"> | string | null
     isAdmin?: BoolFilter<"User"> | boolean
+    bio?: StringNullableFilter<"User"> | string | null
+    avatar?: StringNullableFilter<"User"> | string | null
     games?: UserGameListRelationFilter
     posts?: ForumPostListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
-    name?: SortOrderInput | SortOrder
-    email?: SortOrderInput | SortOrder
+    name?: SortOrder
+    email?: SortOrder
     password?: SortOrderInput | SortOrder
     isAdmin?: SortOrder
+    bio?: SortOrderInput | SortOrder
+    avatar?: SortOrderInput | SortOrder
     games?: UserGameOrderByRelationAggregateInput
     posts?: ForumPostOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    name?: string
     email?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
-    name?: StringNullableFilter<"User"> | string | null
     password?: StringNullableFilter<"User"> | string | null
     isAdmin?: BoolFilter<"User"> | boolean
+    bio?: StringNullableFilter<"User"> | string | null
+    avatar?: StringNullableFilter<"User"> | string | null
     games?: UserGameListRelationFilter
     posts?: ForumPostListRelationFilter
-  }, "id" | "email">
+  }, "id" | "name" | "email">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
-    name?: SortOrderInput | SortOrder
-    email?: SortOrderInput | SortOrder
+    name?: SortOrder
+    email?: SortOrder
     password?: SortOrderInput | SortOrder
     isAdmin?: SortOrder
+    bio?: SortOrderInput | SortOrder
+    avatar?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -9366,10 +9416,12 @@ export namespace Prisma {
     OR?: UserScalarWhereWithAggregatesInput[]
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"User"> | string
-    name?: StringNullableWithAggregatesFilter<"User"> | string | null
-    email?: StringNullableWithAggregatesFilter<"User"> | string | null
+    name?: StringWithAggregatesFilter<"User"> | string
+    email?: StringWithAggregatesFilter<"User"> | string
     password?: StringNullableWithAggregatesFilter<"User"> | string | null
     isAdmin?: BoolWithAggregatesFilter<"User"> | boolean
+    bio?: StringNullableWithAggregatesFilter<"User"> | string | null
+    avatar?: StringNullableWithAggregatesFilter<"User"> | string | null
   }
 
   export type ConsoleWhereInput = {
@@ -9421,6 +9473,7 @@ export namespace Prisma {
     title?: StringFilter<"Game"> | string
     description?: StringFilter<"Game"> | string
     coverImage?: StringFilter<"Game"> | string
+    releaseDate?: DateTimeNullableFilter<"Game"> | Date | string | null
     consoleId?: StringNullableFilter<"Game"> | string | null
     console?: XOR<ConsoleNullableScalarRelationFilter, ConsoleWhereInput> | null
     achievements?: AchievementListRelationFilter
@@ -9433,6 +9486,7 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     coverImage?: SortOrder
+    releaseDate?: SortOrderInput | SortOrder
     consoleId?: SortOrderInput | SortOrder
     console?: ConsoleOrderByWithRelationInput
     achievements?: AchievementOrderByRelationAggregateInput
@@ -9448,6 +9502,7 @@ export namespace Prisma {
     title?: StringFilter<"Game"> | string
     description?: StringFilter<"Game"> | string
     coverImage?: StringFilter<"Game"> | string
+    releaseDate?: DateTimeNullableFilter<"Game"> | Date | string | null
     consoleId?: StringNullableFilter<"Game"> | string | null
     console?: XOR<ConsoleNullableScalarRelationFilter, ConsoleWhereInput> | null
     achievements?: AchievementListRelationFilter
@@ -9460,6 +9515,7 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     coverImage?: SortOrder
+    releaseDate?: SortOrderInput | SortOrder
     consoleId?: SortOrderInput | SortOrder
     _count?: GameCountOrderByAggregateInput
     _max?: GameMaxOrderByAggregateInput
@@ -9475,6 +9531,7 @@ export namespace Prisma {
     title?: StringWithAggregatesFilter<"Game"> | string
     description?: StringWithAggregatesFilter<"Game"> | string
     coverImage?: StringWithAggregatesFilter<"Game"> | string
+    releaseDate?: DateTimeNullableWithAggregatesFilter<"Game"> | Date | string | null
     consoleId?: StringNullableWithAggregatesFilter<"Game"> | string | null
   }
 
@@ -9702,66 +9759,80 @@ export namespace Prisma {
 
   export type UserCreateInput = {
     id?: string
-    name?: string | null
-    email?: string | null
+    name: string
+    email: string
     password?: string | null
     isAdmin?: boolean
+    bio?: string | null
+    avatar?: string | null
     games?: UserGameCreateNestedManyWithoutUserInput
     posts?: ForumPostCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateInput = {
     id?: string
-    name?: string | null
-    email?: string | null
+    name: string
+    email: string
     password?: string | null
     isAdmin?: boolean
+    bio?: string | null
+    avatar?: string | null
     games?: UserGameUncheckedCreateNestedManyWithoutUserInput
     posts?: ForumPostUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
     games?: UserGameUpdateManyWithoutUserNestedInput
     posts?: ForumPostUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
     games?: UserGameUncheckedUpdateManyWithoutUserNestedInput
     posts?: ForumPostUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserCreateManyInput = {
     id?: string
-    name?: string | null
-    email?: string | null
+    name: string
+    email: string
     password?: string | null
     isAdmin?: boolean
+    bio?: string | null
+    avatar?: string | null
   }
 
   export type UserUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ConsoleCreateInput = {
@@ -9809,6 +9880,7 @@ export namespace Prisma {
     title: string
     description: string
     coverImage: string
+    releaseDate?: Date | string | null
     console?: ConsoleCreateNestedOneWithoutGamesInput
     achievements?: AchievementCreateNestedManyWithoutGameInput
     users?: UserGameCreateNestedManyWithoutGameInput
@@ -9820,6 +9892,7 @@ export namespace Prisma {
     title: string
     description: string
     coverImage: string
+    releaseDate?: Date | string | null
     consoleId?: string | null
     achievements?: AchievementUncheckedCreateNestedManyWithoutGameInput
     users?: UserGameUncheckedCreateNestedManyWithoutGameInput
@@ -9831,6 +9904,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     coverImage?: StringFieldUpdateOperationsInput | string
+    releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     console?: ConsoleUpdateOneWithoutGamesNestedInput
     achievements?: AchievementUpdateManyWithoutGameNestedInput
     users?: UserGameUpdateManyWithoutGameNestedInput
@@ -9842,6 +9916,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     coverImage?: StringFieldUpdateOperationsInput | string
+    releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     consoleId?: NullableStringFieldUpdateOperationsInput | string | null
     achievements?: AchievementUncheckedUpdateManyWithoutGameNestedInput
     users?: UserGameUncheckedUpdateManyWithoutGameNestedInput
@@ -9853,6 +9928,7 @@ export namespace Prisma {
     title: string
     description: string
     coverImage: string
+    releaseDate?: Date | string | null
     consoleId?: string | null
   }
 
@@ -9862,6 +9938,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     coverImage?: StringFieldUpdateOperationsInput | string
+    releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type GameUncheckedUpdateManyInput = {
@@ -9870,6 +9947,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     coverImage?: StringFieldUpdateOperationsInput | string
+    releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     consoleId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -10151,6 +10229,8 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     isAdmin?: SortOrder
+    bio?: SortOrder
+    avatar?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -10159,6 +10239,8 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     isAdmin?: SortOrder
+    bio?: SortOrder
+    avatar?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -10167,6 +10249,8 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     isAdmin?: SortOrder
+    bio?: SortOrder
+    avatar?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -10238,6 +10322,17 @@ export namespace Prisma {
     name?: SortOrder
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type ConsoleNullableScalarRelationFilter = {
     is?: ConsoleWhereInput | null
     isNot?: ConsoleWhereInput | null
@@ -10259,6 +10354,7 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     coverImage?: SortOrder
+    releaseDate?: SortOrder
     consoleId?: SortOrder
   }
 
@@ -10268,6 +10364,7 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     coverImage?: SortOrder
+    releaseDate?: SortOrder
     consoleId?: SortOrder
   }
 
@@ -10277,7 +10374,22 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     coverImage?: SortOrder
+    releaseDate?: SortOrder
     consoleId?: SortOrder
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type GameScalarRelationFilter = {
@@ -10595,6 +10707,10 @@ export namespace Prisma {
     connectOrCreate?: UserGameCreateOrConnectWithoutGameInput | UserGameCreateOrConnectWithoutGameInput[]
     createMany?: UserGameCreateManyGameInputEnvelope
     connect?: UserGameWhereUniqueInput | UserGameWhereUniqueInput[]
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type ConsoleUpdateOneWithoutGamesNestedInput = {
@@ -10932,6 +11048,31 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -11067,6 +11208,7 @@ export namespace Prisma {
     title: string
     description: string
     coverImage: string
+    releaseDate?: Date | string | null
     achievements?: AchievementCreateNestedManyWithoutGameInput
     users?: UserGameCreateNestedManyWithoutGameInput
   }
@@ -11077,6 +11219,7 @@ export namespace Prisma {
     title: string
     description: string
     coverImage: string
+    releaseDate?: Date | string | null
     achievements?: AchievementUncheckedCreateNestedManyWithoutGameInput
     users?: UserGameUncheckedCreateNestedManyWithoutGameInput
   }
@@ -11116,6 +11259,7 @@ export namespace Prisma {
     title?: StringFilter<"Game"> | string
     description?: StringFilter<"Game"> | string
     coverImage?: StringFilter<"Game"> | string
+    releaseDate?: DateTimeNullableFilter<"Game"> | Date | string | null
     consoleId?: StringNullableFilter<"Game"> | string | null
   }
 
@@ -11251,6 +11395,7 @@ export namespace Prisma {
     title: string
     description: string
     coverImage: string
+    releaseDate?: Date | string | null
     console?: ConsoleCreateNestedOneWithoutGamesInput
     users?: UserGameCreateNestedManyWithoutGameInput
   }
@@ -11261,6 +11406,7 @@ export namespace Prisma {
     title: string
     description: string
     coverImage: string
+    releaseDate?: Date | string | null
     consoleId?: string | null
     users?: UserGameUncheckedCreateNestedManyWithoutGameInput
   }
@@ -11309,6 +11455,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     coverImage?: StringFieldUpdateOperationsInput | string
+    releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     console?: ConsoleUpdateOneWithoutGamesNestedInput
     users?: UserGameUpdateManyWithoutGameNestedInput
   }
@@ -11319,6 +11466,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     coverImage?: StringFieldUpdateOperationsInput | string
+    releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     consoleId?: NullableStringFieldUpdateOperationsInput | string | null
     users?: UserGameUncheckedUpdateManyWithoutGameNestedInput
   }
@@ -11439,19 +11587,23 @@ export namespace Prisma {
 
   export type UserCreateWithoutGamesInput = {
     id?: string
-    name?: string | null
-    email?: string | null
+    name: string
+    email: string
     password?: string | null
     isAdmin?: boolean
+    bio?: string | null
+    avatar?: string | null
     posts?: ForumPostCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutGamesInput = {
     id?: string
-    name?: string | null
-    email?: string | null
+    name: string
+    email: string
     password?: string | null
     isAdmin?: boolean
+    bio?: string | null
+    avatar?: string | null
     posts?: ForumPostUncheckedCreateNestedManyWithoutAuthorInput
   }
 
@@ -11466,6 +11618,7 @@ export namespace Prisma {
     title: string
     description: string
     coverImage: string
+    releaseDate?: Date | string | null
     console?: ConsoleCreateNestedOneWithoutGamesInput
     achievements?: AchievementCreateNestedManyWithoutGameInput
   }
@@ -11476,6 +11629,7 @@ export namespace Prisma {
     title: string
     description: string
     coverImage: string
+    releaseDate?: Date | string | null
     consoleId?: string | null
     achievements?: AchievementUncheckedCreateNestedManyWithoutGameInput
   }
@@ -11520,19 +11674,23 @@ export namespace Prisma {
 
   export type UserUpdateWithoutGamesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: ForumPostUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutGamesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: ForumPostUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
@@ -11553,6 +11711,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     coverImage?: StringFieldUpdateOperationsInput | string
+    releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     console?: ConsoleUpdateOneWithoutGamesNestedInput
     achievements?: AchievementUpdateManyWithoutGameNestedInput
   }
@@ -11563,6 +11722,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     coverImage?: StringFieldUpdateOperationsInput | string
+    releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     consoleId?: NullableStringFieldUpdateOperationsInput | string | null
     achievements?: AchievementUncheckedUpdateManyWithoutGameNestedInput
   }
@@ -11585,19 +11745,23 @@ export namespace Prisma {
 
   export type UserCreateWithoutPostsInput = {
     id?: string
-    name?: string | null
-    email?: string | null
+    name: string
+    email: string
     password?: string | null
     isAdmin?: boolean
+    bio?: string | null
+    avatar?: string | null
     games?: UserGameCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPostsInput = {
     id?: string
-    name?: string | null
-    email?: string | null
+    name: string
+    email: string
     password?: string | null
     isAdmin?: boolean
+    bio?: string | null
+    avatar?: string | null
     games?: UserGameUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -11619,19 +11783,23 @@ export namespace Prisma {
 
   export type UserUpdateWithoutPostsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
     games?: UserGameUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPostsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
     games?: UserGameUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -11699,6 +11867,7 @@ export namespace Prisma {
     title: string
     description: string
     coverImage: string
+    releaseDate?: Date | string | null
   }
 
   export type GameUpdateWithoutConsoleInput = {
@@ -11707,6 +11876,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     coverImage?: StringFieldUpdateOperationsInput | string
+    releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     achievements?: AchievementUpdateManyWithoutGameNestedInput
     users?: UserGameUpdateManyWithoutGameNestedInput
   }
@@ -11717,6 +11887,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     coverImage?: StringFieldUpdateOperationsInput | string
+    releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     achievements?: AchievementUncheckedUpdateManyWithoutGameNestedInput
     users?: UserGameUncheckedUpdateManyWithoutGameNestedInput
   }
@@ -11727,6 +11898,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     coverImage?: StringFieldUpdateOperationsInput | string
+    releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type AchievementCreateManyGameInput = {
