@@ -27,8 +27,11 @@ async function main() {
       slug: 'metal-gear-solid-3',
       title: 'Metal Gear Solid 3: Snake Eater',
       description: 'Stealth action game set in the Cold War.',
-      coverImage: '/placeholder.png',
-      consoleId: ps2.id,
+      coverImage: '/games/metal-gear-solid-3/cover.png',
+      developer: "Konami Computer Entertainment Japan",
+      publisher: "Konami",
+      screenshots: [],
+      console: { connect: { name: "PlayStation 2" } },
       achievements: {
         create: [
           { title: 'Virtuous Mission Complete', description: 'Finish the prologue.' },
@@ -45,8 +48,11 @@ async function main() {
       slug: 'smash-bros-melee',
       title: 'Super Smash Bros. Melee',
       description: 'Fast-paced platform fighting game.',
-      coverImage: '/placeholder.png',
-      consoleId: gamecube.id,
+      coverImage: '/games/smash-bros-melee/cover.png',
+      developer: "Nintendo",
+      publisher: "Nintendo",
+      screenshots: [],
+      console: { connect: { name: "GameCube" } },
       achievements: {
         create: [
           { title: 'Unlock All Characters', description: 'Unlock all playable fighters.' },

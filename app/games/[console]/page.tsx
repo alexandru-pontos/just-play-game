@@ -51,7 +51,7 @@ export default function GameLibrary() {
 
   const handlePageChange = (newPage: number) => {
     setPage(newPage);
-    router.push(`/games/${console}?page=${newPage}`);
+    router.push(`/games/${console}?page=${newPage}&sort=${sort}`);
   };
 
   return (
@@ -62,7 +62,7 @@ export default function GameLibrary() {
         <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
           {session?.user?.isAdmin && (
             <Link
-              href="/admin/games/new"
+              href={`/games/${console}/new`}
               className="bg-purple-600 hover:bg-purple-700 text-white text-sm px-4 py-2 rounded"
             >
               + Add New Game

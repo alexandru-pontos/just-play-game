@@ -42,3 +42,10 @@ next-env.d.ts
 
 # vscode
 .vscode
+
+# My custom entries below this line #
+
+# Game asset stuff
+./public/games/*
+./public/avatars/*
+./public/achievements/*

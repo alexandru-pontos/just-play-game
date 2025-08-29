@@ -138,8 +138,11 @@ exports.Prisma.GameScalarFieldEnum = {
   title: 'title',
   description: 'description',
   coverImage: 'coverImage',
+  developer: 'developer',
+  publisher: 'publisher',
   releaseDate: 'releaseDate',
-  consoleId: 'consoleId'
+  consoleId: 'consoleId',
+  screenshots: 'screenshots'
 };
 
 exports.Prisma.AchievementScalarFieldEnum = {

@@ -38,9 +38,13 @@ model Game {
   title        String
   description  String
   coverImage   String
+  developer    String
+  publisher    String
   releaseDate  DateTime?
   console      Console?      @relation(fields: [consoleId], references: [id])
   consoleId    String?
+
+  screenshots  String[]
   achievements Achievement[]
   users        UserGame[]
 }

@@ -3758,6 +3758,8 @@ export namespace Prisma {
     title: string | null
     description: string | null
     coverImage: string | null
+    developer: string | null
+    publisher: string | null
     releaseDate: Date | null
     consoleId: string | null
   }
@@ -3768,6 +3770,8 @@ export namespace Prisma {
     title: string | null
     description: string | null
     coverImage: string | null
+    developer: string | null
+    publisher: string | null
     releaseDate: Date | null
     consoleId: string | null
   }
@@ -3778,8 +3782,11 @@ export namespace Prisma {
     title: number
     description: number
     coverImage: number
+    developer: number
+    publisher: number
     releaseDate: number
     consoleId: number
+    screenshots: number
     _all: number
   }
 
@@ -3790,6 +3797,8 @@ export namespace Prisma {
     title?: true
     description?: true
     coverImage?: true
+    developer?: true
+    publisher?: true
     releaseDate?: true
     consoleId?: true
   }
@@ -3800,6 +3809,8 @@ export namespace Prisma {
     title?: true
     description?: true
     coverImage?: true
+    developer?: true
+    publisher?: true
     releaseDate?: true
     consoleId?: true
   }
@@ -3810,8 +3821,11 @@ export namespace Prisma {
     title?: true
     description?: true
     coverImage?: true
+    developer?: true
+    publisher?: true
     releaseDate?: true
     consoleId?: true
+    screenshots?: true
     _all?: true
   }
 
@@ -3893,8 +3907,11 @@ export namespace Prisma {
     title: string
     description: string
     coverImage: string
+    developer: string
+    publisher: string
     releaseDate: Date | null
     consoleId: string | null
+    screenshots: string[]
     _count: GameCountAggregateOutputType | null
     _min: GameMinAggregateOutputType | null
     _max: GameMaxAggregateOutputType | null
@@ -3920,8 +3937,11 @@ export namespace Prisma {
     title?: boolean
     description?: boolean
     coverImage?: boolean
+    developer?: boolean
+    publisher?: boolean
     releaseDate?: boolean
     consoleId?: boolean
+    screenshots?: boolean
     console?: boolean | Game$consoleArgs<ExtArgs>
     achievements?: boolean | Game$achievementsArgs<ExtArgs>
     users?: boolean | Game$usersArgs<ExtArgs>
@@ -3934,8 +3954,11 @@ export namespace Prisma {
     title?: boolean
     description?: boolean
     coverImage?: boolean
+    developer?: boolean
+    publisher?: boolean
     releaseDate?: boolean
     consoleId?: boolean
+    screenshots?: boolean
     console?: boolean | Game$consoleArgs<ExtArgs>
   }, ExtArgs["result"]["game"]>
 
@@ -3945,8 +3968,11 @@ export namespace Prisma {
     title?: boolean
     description?: boolean
     coverImage?: boolean
+    developer?: boolean
+    publisher?: boolean
     releaseDate?: boolean
     consoleId?: boolean
+    screenshots?: boolean
     console?: boolean | Game$consoleArgs<ExtArgs>
   }, ExtArgs["result"]["game"]>
 
@@ -3956,11 +3982,14 @@ export namespace Prisma {
     title?: boolean
     description?: boolean
     coverImage?: boolean
+    developer?: boolean
+    publisher?: boolean
     releaseDate?: boolean
     consoleId?: boolean
+    screenshots?: boolean
   }
 
-  export type GameOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "title" | "description" | "coverImage" | "releaseDate" | "consoleId", ExtArgs["result"]["game"]>
+  export type GameOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "title" | "description" | "coverImage" | "developer" | "publisher" | "releaseDate" | "consoleId" | "screenshots", ExtArgs["result"]["game"]>
   export type GameInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     console?: boolean | Game$consoleArgs<ExtArgs>
     achievements?: boolean | Game$achievementsArgs<ExtArgs>
@@ -3987,8 +4016,11 @@ export namespace Prisma {
       title: string
       description: string
       coverImage: string
+      developer: string
+      publisher: string
       releaseDate: Date | null
       consoleId: string | null
+      screenshots: string[]
     }, ExtArgs["result"]["game"]>
     composites: {}
   }
@@ -4420,8 +4452,11 @@ export namespace Prisma {
     readonly title: FieldRef<"Game", 'String'>
     readonly description: FieldRef<"Game", 'String'>
     readonly coverImage: FieldRef<"Game", 'String'>
+    readonly developer: FieldRef<"Game", 'String'>
+    readonly publisher: FieldRef<"Game", 'String'>
     readonly releaseDate: FieldRef<"Game", 'DateTime'>
     readonly consoleId: FieldRef<"Game", 'String'>
+    readonly screenshots: FieldRef<"Game", 'String[]'>
   }
     
 
@@ -9226,8 +9261,11 @@ export namespace Prisma {
     title: 'title',
     description: 'description',
     coverImage: 'coverImage',
+    developer: 'developer',
+    publisher: 'publisher',
     releaseDate: 'releaseDate',
-    consoleId: 'consoleId'
+    consoleId: 'consoleId',
+    screenshots: 'screenshots'
   };
 
   export type GameScalarFieldEnum = (typeof GameScalarFieldEnum)[keyof typeof GameScalarFieldEnum]
@@ -9473,8 +9511,11 @@ export namespace Prisma {
     title?: StringFilter<"Game"> | string
     description?: StringFilter<"Game"> | string
     coverImage?: StringFilter<"Game"> | string
+    developer?: StringFilter<"Game"> | string
+    publisher?: StringFilter<"Game"> | string
     releaseDate?: DateTimeNullableFilter<"Game"> | Date | string | null
     consoleId?: StringNullableFilter<"Game"> | string | null
+    screenshots?: StringNullableListFilter<"Game">
     console?: XOR<ConsoleNullableScalarRelationFilter, ConsoleWhereInput> | null
     achievements?: AchievementListRelationFilter
     users?: UserGameListRelationFilter
@@ -9486,8 +9527,11 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     coverImage?: SortOrder
+    developer?: SortOrder
+    publisher?: SortOrder
     releaseDate?: SortOrderInput | SortOrder
     consoleId?: SortOrderInput | SortOrder
+    screenshots?: SortOrder
     console?: ConsoleOrderByWithRelationInput
     achievements?: AchievementOrderByRelationAggregateInput
     users?: UserGameOrderByRelationAggregateInput
@@ -9502,8 +9546,11 @@ export namespace Prisma {
     title?: StringFilter<"Game"> | string
     description?: StringFilter<"Game"> | string
     coverImage?: StringFilter<"Game"> | string
+    developer?: StringFilter<"Game"> | string
+    publisher?: StringFilter<"Game"> | string
     releaseDate?: DateTimeNullableFilter<"Game"> | Date | string | null
     consoleId?: StringNullableFilter<"Game"> | string | null
+    screenshots?: StringNullableListFilter<"Game">
     console?: XOR<ConsoleNullableScalarRelationFilter, ConsoleWhereInput> | null
     achievements?: AchievementListRelationFilter
     users?: UserGameListRelationFilter
@@ -9515,8 +9562,11 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     coverImage?: SortOrder
+    developer?: SortOrder
+    publisher?: SortOrder
     releaseDate?: SortOrderInput | SortOrder
     consoleId?: SortOrderInput | SortOrder
+    screenshots?: SortOrder
     _count?: GameCountOrderByAggregateInput
     _max?: GameMaxOrderByAggregateInput
     _min?: GameMinOrderByAggregateInput
@@ -9531,8 +9581,11 @@ export namespace Prisma {
     title?: StringWithAggregatesFilter<"Game"> | string
     description?: StringWithAggregatesFilter<"Game"> | string
     coverImage?: StringWithAggregatesFilter<"Game"> | string
+    developer?: StringWithAggregatesFilter<"Game"> | string
+    publisher?: StringWithAggregatesFilter<"Game"> | string
     releaseDate?: DateTimeNullableWithAggregatesFilter<"Game"> | Date | string | null
     consoleId?: StringNullableWithAggregatesFilter<"Game"> | string | null
+    screenshots?: StringNullableListFilter<"Game">
   }
 
   export type AchievementWhereInput = {
@@ -9880,7 +9933,10 @@ export namespace Prisma {
     title: string
     description: string
     coverImage: string
+    developer: string
+    publisher: string
     releaseDate?: Date | string | null
+    screenshots?: GameCreatescreenshotsInput | string[]
     console?: ConsoleCreateNestedOneWithoutGamesInput
     achievements?: AchievementCreateNestedManyWithoutGameInput
     users?: UserGameCreateNestedManyWithoutGameInput
@@ -9892,8 +9948,11 @@ export namespace Prisma {
     title: string
     description: string
     coverImage: string
+    developer: string
+    publisher: string
     releaseDate?: Date | string | null
     consoleId?: string | null
+    screenshots?: GameCreatescreenshotsInput | string[]
     achievements?: AchievementUncheckedCreateNestedManyWithoutGameInput
     users?: UserGameUncheckedCreateNestedManyWithoutGameInput
   }
@@ -9904,7 +9963,10 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     coverImage?: StringFieldUpdateOperationsInput | string
+    developer?: StringFieldUpdateOperationsInput | string
+    publisher?: StringFieldUpdateOperationsInput | string
     releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    screenshots?: GameUpdatescreenshotsInput | string[]
     console?: ConsoleUpdateOneWithoutGamesNestedInput
     achievements?: AchievementUpdateManyWithoutGameNestedInput
     users?: UserGameUpdateManyWithoutGameNestedInput
@@ -9916,8 +9978,11 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     coverImage?: StringFieldUpdateOperationsInput | string
+    developer?: StringFieldUpdateOperationsInput | string
+    publisher?: StringFieldUpdateOperationsInput | string
     releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     consoleId?: NullableStringFieldUpdateOperationsInput | string | null
+    screenshots?: GameUpdatescreenshotsInput | string[]
     achievements?: AchievementUncheckedUpdateManyWithoutGameNestedInput
     users?: UserGameUncheckedUpdateManyWithoutGameNestedInput
   }
@@ -9928,8 +9993,11 @@ export namespace Prisma {
     title: string
     description: string
     coverImage: string
+    developer: string
+    publisher: string
     releaseDate?: Date | string | null
     consoleId?: string | null
+    screenshots?: GameCreatescreenshotsInput | string[]
   }
 
   export type GameUpdateManyMutationInput = {
@@ -9938,7 +10006,10 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     coverImage?: StringFieldUpdateOperationsInput | string
+    developer?: StringFieldUpdateOperationsInput | string
+    publisher?: StringFieldUpdateOperationsInput | string
     releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    screenshots?: GameUpdatescreenshotsInput | string[]
   }
 
   export type GameUncheckedUpdateManyInput = {
@@ -9947,8 +10018,11 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     coverImage?: StringFieldUpdateOperationsInput | string
+    developer?: StringFieldUpdateOperationsInput | string
+    publisher?: StringFieldUpdateOperationsInput | string
     releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     consoleId?: NullableStringFieldUpdateOperationsInput | string | null
+    screenshots?: GameUpdatescreenshotsInput | string[]
   }
 
   export type AchievementCreateInput = {
@@ -10333,6 +10407,14 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type ConsoleNullableScalarRelationFilter = {
     is?: ConsoleWhereInput | null
     isNot?: ConsoleWhereInput | null
@@ -10354,8 +10436,11 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     coverImage?: SortOrder
+    developer?: SortOrder
+    publisher?: SortOrder
     releaseDate?: SortOrder
     consoleId?: SortOrder
+    screenshots?: SortOrder
   }
 
   export type GameMaxOrderByAggregateInput = {
@@ -10364,6 +10449,8 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     coverImage?: SortOrder
+    developer?: SortOrder
+    publisher?: SortOrder
     releaseDate?: SortOrder
     consoleId?: SortOrder
   }
@@ -10374,6 +10461,8 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     coverImage?: SortOrder
+    developer?: SortOrder
+    publisher?: SortOrder
     releaseDate?: SortOrder
     consoleId?: SortOrder
   }
@@ -10675,6 +10764,10 @@ export namespace Prisma {
     deleteMany?: GameScalarWhereInput | GameScalarWhereInput[]
   }
 
+  export type GameCreatescreenshotsInput = {
+    set: string[]
+  }
+
   export type ConsoleCreateNestedOneWithoutGamesInput = {
     create?: XOR<ConsoleCreateWithoutGamesInput, ConsoleUncheckedCreateWithoutGamesInput>
     connectOrCreate?: ConsoleCreateOrConnectWithoutGamesInput
@@ -10711,6 +10804,11 @@ export namespace Prisma {
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
+  }
+
+  export type GameUpdatescreenshotsInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type ConsoleUpdateOneWithoutGamesNestedInput = {
@@ -11208,7 +11306,10 @@ export namespace Prisma {
     title: string
     description: string
     coverImage: string
+    developer: string
+    publisher: string
     releaseDate?: Date | string | null
+    screenshots?: GameCreatescreenshotsInput | string[]
     achievements?: AchievementCreateNestedManyWithoutGameInput
     users?: UserGameCreateNestedManyWithoutGameInput
   }
@@ -11219,7 +11320,10 @@ export namespace Prisma {
     title: string
     description: string
     coverImage: string
+    developer: string
+    publisher: string
     releaseDate?: Date | string | null
+    screenshots?: GameCreatescreenshotsInput | string[]
     achievements?: AchievementUncheckedCreateNestedManyWithoutGameInput
     users?: UserGameUncheckedCreateNestedManyWithoutGameInput
   }
@@ -11259,8 +11363,11 @@ export namespace Prisma {
     title?: StringFilter<"Game"> | string
     description?: StringFilter<"Game"> | string
     coverImage?: StringFilter<"Game"> | string
+    developer?: StringFilter<"Game"> | string
+    publisher?: StringFilter<"Game"> | string
     releaseDate?: DateTimeNullableFilter<"Game"> | Date | string | null
     consoleId?: StringNullableFilter<"Game"> | string | null
+    screenshots?: StringNullableListFilter<"Game">
   }
 
   export type ConsoleCreateWithoutGamesInput = {
@@ -11395,7 +11502,10 @@ export namespace Prisma {
     title: string
     description: string
     coverImage: string
+    developer: string
+    publisher: string
     releaseDate?: Date | string | null
+    screenshots?: GameCreatescreenshotsInput | string[]
     console?: ConsoleCreateNestedOneWithoutGamesInput
     users?: UserGameCreateNestedManyWithoutGameInput
   }
@@ -11406,8 +11516,11 @@ export namespace Prisma {
     title: string
     description: string
     coverImage: string
+    developer: string
+    publisher: string
     releaseDate?: Date | string | null
     consoleId?: string | null
+    screenshots?: GameCreatescreenshotsInput | string[]
     users?: UserGameUncheckedCreateNestedManyWithoutGameInput
   }
 
@@ -11455,7 +11568,10 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     coverImage?: StringFieldUpdateOperationsInput | string
+    developer?: StringFieldUpdateOperationsInput | string
+    publisher?: StringFieldUpdateOperationsInput | string
     releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    screenshots?: GameUpdatescreenshotsInput | string[]
     console?: ConsoleUpdateOneWithoutGamesNestedInput
     users?: UserGameUpdateManyWithoutGameNestedInput
   }
@@ -11466,8 +11582,11 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     coverImage?: StringFieldUpdateOperationsInput | string
+    developer?: StringFieldUpdateOperationsInput | string
+    publisher?: StringFieldUpdateOperationsInput | string
     releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     consoleId?: NullableStringFieldUpdateOperationsInput | string | null
+    screenshots?: GameUpdatescreenshotsInput | string[]
     users?: UserGameUncheckedUpdateManyWithoutGameNestedInput
   }
 
@@ -11618,7 +11737,10 @@ export namespace Prisma {
     title: string
     description: string
     coverImage: string
+    developer: string
+    publisher: string
     releaseDate?: Date | string | null
+    screenshots?: GameCreatescreenshotsInput | string[]
     console?: ConsoleCreateNestedOneWithoutGamesInput
     achievements?: AchievementCreateNestedManyWithoutGameInput
   }
@@ -11629,8 +11751,11 @@ export namespace Prisma {
     title: string
     description: string
     coverImage: string
+    developer: string
+    publisher: string
     releaseDate?: Date | string | null
     consoleId?: string | null
+    screenshots?: GameCreatescreenshotsInput | string[]
     achievements?: AchievementUncheckedCreateNestedManyWithoutGameInput
   }
 
@@ -11711,7 +11836,10 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     coverImage?: StringFieldUpdateOperationsInput | string
+    developer?: StringFieldUpdateOperationsInput | string
+    publisher?: StringFieldUpdateOperationsInput | string
     releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    screenshots?: GameUpdatescreenshotsInput | string[]
     console?: ConsoleUpdateOneWithoutGamesNestedInput
     achievements?: AchievementUpdateManyWithoutGameNestedInput
   }
@@ -11722,8 +11850,11 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     coverImage?: StringFieldUpdateOperationsInput | string
+    developer?: StringFieldUpdateOperationsInput | string
+    publisher?: StringFieldUpdateOperationsInput | string
     releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     consoleId?: NullableStringFieldUpdateOperationsInput | string | null
+    screenshots?: GameUpdatescreenshotsInput | string[]
     achievements?: AchievementUncheckedUpdateManyWithoutGameNestedInput
   }
 
@@ -11867,7 +11998,10 @@ export namespace Prisma {
     title: string
     description: string
     coverImage: string
+    developer: string
+    publisher: string
     releaseDate?: Date | string | null
+    screenshots?: GameCreatescreenshotsInput | string[]
   }
 
   export type GameUpdateWithoutConsoleInput = {
@@ -11876,7 +12010,10 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     coverImage?: StringFieldUpdateOperationsInput | string
+    developer?: StringFieldUpdateOperationsInput | string
+    publisher?: StringFieldUpdateOperationsInput | string
     releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    screenshots?: GameUpdatescreenshotsInput | string[]
     achievements?: AchievementUpdateManyWithoutGameNestedInput
     users?: UserGameUpdateManyWithoutGameNestedInput
   }
@@ -11887,7 +12024,10 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     coverImage?: StringFieldUpdateOperationsInput | string
+    developer?: StringFieldUpdateOperationsInput | string
+    publisher?: StringFieldUpdateOperationsInput | string
     releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    screenshots?: GameUpdatescreenshotsInput | string[]
     achievements?: AchievementUncheckedUpdateManyWithoutGameNestedInput
     users?: UserGameUncheckedUpdateManyWithoutGameNestedInput
   }
@@ -11898,7 +12038,10 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     coverImage?: StringFieldUpdateOperationsInput | string
+    developer?: StringFieldUpdateOperationsInput | string
+    publisher?: StringFieldUpdateOperationsInput | string
     releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    screenshots?: GameUpdatescreenshotsInput | string[]
   }
 
   export type AchievementCreateManyGameInput = {
