@@ -142,13 +142,15 @@ exports.Prisma.GameScalarFieldEnum = {
   publisher: 'publisher',
   releaseDate: 'releaseDate',
   consoleId: 'consoleId',
-  screenshots: 'screenshots'
+  screenshots: 'screenshots',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.AchievementScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
+  image: 'image',
   gameId: 'gameId'
 };
 
@@ -166,13 +168,52 @@ exports.Prisma.UserGameScalarFieldEnum = {
   owned: 'owned'
 };
 
-exports.Prisma.ForumPostScalarFieldEnum = {
+exports.Prisma.ForumCategoryScalarFieldEnum = {
   id: 'id',
+  name: 'name',
+  slug: 'slug',
+  position: 'position',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ForumSubforumScalarFieldEnum = {
+  id: 'id',
+  categoryId: 'categoryId',
+  name: 'name',
+  slug: 'slug',
+  description: 'description',
+  position: 'position',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ForumThreadScalarFieldEnum = {
+  id: 'id',
+  subforumId: 'subforumId',
   authorId: 'authorId',
   title: 'title',
-  content: 'content',
   pinned: 'pinned',
-  createdAt: 'createdAt'
+  locked: 'locked',
+  lastPostAt: 'lastPostAt',
+  lastPostById: 'lastPostById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ForumPostScalarFieldEnum = {
+  id: 'id',
+  threadId: 'threadId',
+  authorId: 'authorId',
+  content: 'content',
+  editedAt: 'editedAt',
+  editCount: 'editCount',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt',
+  deletedById: 'deletedById',
+  deletedReason: 'deletedReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -198,6 +239,9 @@ exports.Prisma.ModelName = {
   Achievement: 'Achievement',
   UserAchievement: 'UserAchievement',
   UserGame: 'UserGame',
+  ForumCategory: 'ForumCategory',
+  ForumSubforum: 'ForumSubforum',
+  ForumThread: 'ForumThread',
   ForumPost: 'ForumPost'
 };
 

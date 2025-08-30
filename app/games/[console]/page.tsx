@@ -112,7 +112,7 @@ export default function GameLibrary() {
               <th>Title</th>
               <th>Achievements</th>
               <th>Release</th>
-              <th>Owned</th>
+              <th>Owners</th>
             </tr>
           </thead>
           <tbody>

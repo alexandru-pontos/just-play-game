@@ -1,63 +1,158 @@
-"use client";
-
+import Image from "next/image";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import prisma from "@/lib/prisma";
+import LibraryRow, { type UnlockedAch } from "./_LibraryRow";
 
-const dummyUser = {
-  username: "PlayerOne",
-  ps2Library: Array.from({ length: 57 }, (_, i) => ({
-    title: `PS2 Game ${i + 1}`,
-    slug: `ps2-game-${i + 1}`,
-  })),
-  gcLibrary: Array.from({ length: 42 }, (_, i) => ({
-    title: `GC Game ${i + 1}`,
-    slug: `gc-game-${i + 1}`,
-  })),
-};
+function consoleNameFromParam(param: string): string | null {
+  const p = param.toLowerCase();
+  if (p === "ps2") return "PlayStation 2";
+  if (p === "gamecube") return "GameCube";
+  return null;
+}
 
-export default function UserLibraryPage({ params }: { params: { console: string } }) {
-  const searchParams = useSearchParams();
-  const page = parseInt(searchParams.get("page") || "1", 10);
-  const perPage = 20;
-  const library = params.console === "ps2" ? dummyUser.ps2Library : dummyUser.gcLibrary;
-  const totalPages = Math.ceil(library.length / perPage);
-  const games = library.slice((page - 1) * perPage, page * perPage);
+function toISODate(d: Date | string | null | undefined) {
+  if (!d) return "";
+  const date = d instanceof Date ? d : new Date(d);
+  return isNaN(date.getTime()) ? "" : date.toISOString().slice(0, 10);
+}
+
+export default async function UserConsoleLibraryPage({
+  params,
+}: {
+  params: { username: string; console: string };
+}) {
+  const consoleName = consoleNameFromParam(params.console);
+  if (!consoleName) {
+    return (
+      <div className="max-w-5xl mx-auto p-6">
+        <h1 className="text-2xl font-semibold mb-2">Library</h1>
+        <div className="rounded bg-red-100 text-red-800 p-3">
+          Unknown console: {params.console}
+        </div>
+      </div>
+    );
+  }
+
+  // Ensure user exists
+  const user = await prisma.user.findUnique({
+    where: { name: params.username },
+    select: { id: true, name: true },
+  });
+  if (!user) {
+    return (
+      <div className="max-w-5xl mx-auto p-6">
+        <h1 className="text-2xl font-semibold mb-2">Library</h1>
+        <div className="rounded bg-red-100 text-red-800 p-3">
+          User not found.
+        </div>
+      </div>
+    );
+  }
+
+  // Owned games for this console, include user's unlocked achievements (title, description, image)
+  const rows = await prisma.userGame.findMany({
+    where: {
+      userId: user.id,
+      owned: true,
+      game: { console: { name: consoleName } },
+    },
+    select: {
+      _count: { select: { achievements: true } }, // user's unlocked count
+      achievements: {
+        select: {
+          achievement: {
+            select: { title: true, description: true, image: true },
+          },
+          earnedAt: true,
+        },
+        orderBy: { earnedAt: "desc" },
+      },
+      game: {
+        select: {
+          slug: true,
+          title: true,
+          releaseDate: true,
+          achievements: { select: { id: true } }, // total
+        },
+      },
+    },
+    orderBy: { game: { title: "asc" } },
+  });
+
+  const list = rows.map((r) => {
+    const total = r.game.achievements.length;
+    const unlocked = r._count.achievements;
+    const unlockedAchievements: UnlockedAch[] = r.achievements.map((ua) => ({
+      title: ua.achievement.title,
+      description: ua.achievement.description,
+      image: ua.achievement.image ?? null,
+    }));
+
+    return {
+      slug: r.game.slug,
+      title: r.game.title,
+      releaseDate: toISODate(r.game.releaseDate),
+      icon: `/games/${r.game.slug}/icon.png`,
+      consoleSlug: params.console,
+      unlocked,
+      total,
+      unlockedAchievements,
+    };
+  });
 
   return (
-    <div className="py-10 space-y-6">
-      <h1 className="text-2xl font-bold">
-        {dummyUser.username}'s {params.console.toUpperCase()} Library
-      </h1>
-
-      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {games.map((game, i) => (
-          <li key={i} className="bg-zinc-800 p-4 rounded-xl hover:bg-zinc-700">
-            <Link href={`/games/${params.console}/${game.slug}`} className="text-purple-400 hover:underline">
-              {game.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
-
-      <div className="flex justify-between pt-6 text-sm">
+    <div className="max-w-5xl mx-auto p-6 space-y-6">
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-semibold">
+          {user.name}&apos;s {consoleName} Library
+        </h1>
         <Link
-          href={`?page=${Math.max(1, page - 1)}`}
-          className={`px-4 py-2 rounded ${page > 1 ? "bg-purple-600 hover:bg-purple-700 text-white" : "bg-zinc-700 text-zinc-500 cursor-not-allowed"}`}
+          href={`/profile/${encodeURIComponent(user.name)}/library`}
+          className="text-sm text-indigo-400 hover:underline"
         >
-          Previous
-        </Link>
-
-        <span className="text-zinc-300">
-          Page {page} of {totalPages}
-        </span>
-
-        <Link
-          href={`?page=${Math.min(totalPages, page + 1)}`}
-          className={`px-4 py-2 rounded ${page < totalPages ? "bg-purple-600 hover:bg-purple-700 text-white" : "bg-zinc-700 text-zinc-500 cursor-not-allowed"}`}
-        >
-          Next
+          Back to library selector
         </Link>
       </div>
+
+      {list.length === 0 ? (
+        <div className="rounded bg-zinc-800/60 p-4 text-sm text-zinc-300">
+          No games yet.
+        </div>
+      ) : (
+        <div className="overflow-x-auto rounded border border-zinc-800">
+          <table className="min-w-full text-sm">
+            <thead className="bg-zinc-900/50 text-zinc-300">
+              <tr>
+                <Th className="w-14">Icon</Th>
+                <Th>Title</Th>
+                <Th>Release Date</Th>
+                <Th className="text-right pr-4">Achievements unlocked</Th>
+              </tr>
+            </thead>
+            <tbody>
+              {list.map((g) => (
+                <LibraryRow
+                  key={g.slug}
+                  game={g}
+                  colSpan={4} // matches number of columns in thead
+                />
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
+  );
+}
+
+function Th({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <th className={`text-left font-medium px-3 py-2 ${className}`}>{children}</th>
   );
 }

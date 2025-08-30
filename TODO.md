@@ -1,16 +1,17 @@
 # TODO
 
 - Game Library [DONE]
-  - Game Page
+  - Game Page [DONE]
     - Add New Game page [DONE]
-    - Game Achievements
+    - Game Edit page [DONE]
+    - Game Achievements [DONE]
 
-- Profile Page
-  - Perfected Games
-  - User Library
-  - User Achievements (separate page)
+- Profile Page [DONE]
+  - Perfected Games [DONE]
+  - User Library [DONE]
+  - User Achievements (separate page) [DONE]
 
-- Forum
-  - User Forum Posts (separate page)
+- Forum [DONE]
+  - User Forum Posts (separate page) [DONE]
 
-- Home Page
+- Home Page [DONE]

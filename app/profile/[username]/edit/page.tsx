@@ -3,63 +3,97 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
-import { signOut } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 
 export default function EditProfilePage() {
-  const { username } = useParams();
+  const params = useParams();
   const router = useRouter();
   const { data: session, status } = useSession();
-  const [loading, setLoading] = useState(true);
 
+  // ---- form state
   const [bio, setBio] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [avatarPreview, setAvatarPreview] = useState("/default-avatar.png");
+  const [loading, setLoading] = useState(true);
+
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const res = await fetch(`/api/profile/${username}`);
-        const data = await res.json();
+  // Normalize username param
+  const usernameParamRaw = params?.username as string | string[] | undefined;
+  const username =
+    Array.isArray(usernameParamRaw) ? usernameParamRaw[0] : (usernameParamRaw || "");
 
-        if (session?.user?.name !== data.name) {
-          router.push("/");
+  useEffect(() => {
+    // Wait until we know the auth state
+    if (status === "loading") return;
+
+    // Hard block: only the owner can access this page (no admin bypass)
+    const isOwner = session?.user?.name === username;
+    if (status !== "authenticated" || !isOwner) {
+      router.replace(`/profile/${encodeURIComponent(username)}`);
+      return;
+    }
+
+    const load = async () => {
+      try {
+        // 1) Try a private edit endpoint that returns full fields for prefill
+        const resEdit = await fetch(
+          `/api/profile/${encodeURIComponent(username)}/edit`,
+          { method: "GET", cache: "no-store" }
+        );
+
+        if (resEdit.ok) {
+          const p = await resEdit.json();
+          // Support either flat or { user: {...} } shape
+          const u = p?.user ?? p ?? {};
+          setEmail(u.email ?? "");
+          setBio(u.bio ?? "");
+          setAvatarPreview(u.avatar ?? "/default-avatar.png");
+          setLoading(false);
           return;
         }
 
-        setBio(data.bio || "");
-        setEmail(data.email || "");
-        setAvatarPreview(data.avatar || "/default-avatar.png");
-      } catch (err) {
-        console.error("Error loading profile", err);
+        // 2) Fallback to public profile data if the private route isn't available
+        const resPublic = await fetch(
+          `/api/profile/${encodeURIComponent(username)}`,
+          { cache: "no-store" }
+        );
+
+        if (resPublic.ok) {
+          const p = await resPublic.json();
+          const u = p?.user ?? p ?? {};
+          setAvatarPreview(u.avatar ?? "/default-avatar.png");
+          // email/bio may not be present on public payload
+        }
+      } catch (e) {
+        console.error("Failed to load profile for edit:", e);
       } finally {
         setLoading(false);
       }
     };
 
-    if (status === "authenticated") {
-      fetchUser();
-    }
-  }, [session, username, status, router]);
+    load();
+  }, [status, session, username, router]);
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const res = await fetch(`/api/profile/${username}/edit`, {
+    const res = await fetch(`/api/profile/${encodeURIComponent(username)}/edit`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ bio, email, password, avatar: avatarPreview }),
     });
 
     if (res.ok) {
-      router.push(`/profile/${username}`);
+      router.push(`/profile/${encodeURIComponent(username)}`);
     } else {
-      alert("Failed to update profile");
+      const err = await res.json().catch(() => ({}));
+      alert(err.error || "Failed to update profile");
     }
   };
 
+  // ✅ preserved avatar upload flow
   const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -73,8 +107,8 @@ export default function EditProfilePage() {
       credentials: "include",
     });
 
-    const data = await res.json();
-    if (res.ok) {
+    const data = await res.json().catch(() => ({}));
+    if (res.ok && data?.path) {
       setAvatarPreview(data.path);
     } else {
       alert(data.error || "Failed to upload avatar");
@@ -155,14 +189,15 @@ export default function EditProfilePage() {
           <button
             type="button"
             onClick={async () => {
-              const confirmed = confirm("Are you sure you want to delete your account? This action is irreversible.");
-
+              const confirmed = confirm(
+                "Are you sure you want to delete your account? This action is irreversible."
+              );
               if (!confirmed) return;
 
-              const res = await fetch(`/api/profile/${username}/delete`, {
-                method: "POST",
-                credentials: "include",
-              });
+              const res = await fetch(
+                `/api/profile/${encodeURIComponent(username)}/delete`,
+                { method: "POST", credentials: "include" }
+              );
 
               if (res.ok) {
                 await signOut({ callbackUrl: "/" });
